@@ -1,42 +1,16 @@
-`use strict`;
-// Require the framework and instantiate it
-
 // ESM
 import Fastify from "fastify";
+import firstRoute from "./our-first-route";
+
 const fastify = Fastify({ logger: true });
 const port = 3000;
 
-// // CommonJs
-// const fastify = require("fastify")({
-//   logger: true,
-// });
+fastify.register(firstRoute);
 
-// Declare a route
-// async/await version
-fastify.get("/", async (request, reply) => {
-  return { hello: "world" };
-});
-
-// fastify.get("/", (request, reply) => {
-//   reply.send({ hello: "world" });
-// });
-
-// Run the server!
-// async/await version
-const start = async () => {
-  try {
-    await fastify.listen(port);
-  } catch (err) {
+fastify.listen(port, (err, address) => {
+  if (err) {
     fastify.log.error(err);
     process.exit(1);
   }
-};
-start();
-
-// fastify.listen(port, (err, address) => {
-//   if (err) {
-//     fastify.log.error(err);
-//     process.exit(1);
-//   }
-//   // Server is now listening on ${address}
-// });
+  // Server is listening on ${address}
+});
