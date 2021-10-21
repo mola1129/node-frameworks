@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "fastify": "^3.22.1"
+  },
+  "scripts": {
+    "dev": "node app.js"
+  }
+}
